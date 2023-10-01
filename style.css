@@ -9,8 +9,49 @@ p {
   margin-top: 0;
 }
 
+button { cursor: pointer; }
+
+[data-id="popup"],
+[data-id="bg-popup"] {
+  display: none;
+  position: absolute;
+}
+
+[data-id="popup"] {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+
+[data-id="popup"] > button {
+  width: 100px;
+  height: 40px;
+}
+
+[data-id="bg-popup"] {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+}
+
 .color-green { color: #008000; }
 
 .color-red { color: #ff0000; }
 
 .color-yellow { color: #918007; }
+
+.active { display: flex; }
+
+.lock { overflow: hidden; }

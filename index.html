@@ -19,18 +19,23 @@
     </section>
     <section aria-labelledby="title-output">
       <h2 id="title-output">Output</h2>
-        <div>
-          <p data-id="player">Player score: </p>
+        <div data-id="player">
+          <p>Player score: </p>
         </div>
-        <div>
-          <p data-id="computer">Computer score: </p>
+        <div data-id="computer">
+          <p>Computer score: </p>
         </div>
         <div data-id="result">
           <p>Result: </p>
         </div>
-        <button type="button">Reset</button>
+        <button data-id="reset" aria-label="Reset button" type="button">Reset</button>
     </section>
   </main>
+  <section data-id="popup" aria-labelledby="title-popup">
+    <h2 id="title-popup">The result of the game</h2>
+    <button data-id="ok" type="button">OK</button>
+  </section>
+  <div data-id="bg-popup"></div>
 <script src="./script.js"></script>
 </body>
 

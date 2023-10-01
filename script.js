@@ -40,7 +40,59 @@ function game() {
   const rockBtn = document.querySelector('[data-id="rock"]');
   const paperBtn = document.querySelector('[data-id="paper"]');
   const scissorsBtn = document.querySelector('[data-id="scissors"]');
+  const resetBtn = document.querySelector('[data-id="reset"]');
+  const playerScoreDiv = document.querySelector('[data-id="player"]');
+  const computerScoreDiv = document.querySelector('[data-id="computer"]');
   const resultDiv = document.querySelector('[data-id="result"]');
+  const okButton = document.querySelector('[data-id="ok"]');
+
+  const playerScorePara = document.createElement('p');
+  let playerScore = 0;
+  playerScorePara.textContent = playerScore;
+  playerScoreDiv.append(playerScorePara);
+
+  const computerScorePara = document.createElement('p');
+  let computerScore = 0;
+  computerScorePara.textContent = computerScore;
+  computerScoreDiv.append(computerScorePara);
+
+
+  function setRoundScore(str) {
+    const strLowerCase = str.toLowerCase();
+
+    if (strLowerCase.includes('win')) {
+      playerScore++;
+    }
+    if (strLowerCase.includes('lose')) {
+      computerScore++;
+    }
+
+    playerScorePara.textContent = playerScore;
+    computerScorePara.textContent = computerScore;
+  }
+
+  function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    playerScorePara.textContent = playerScore;
+    computerScorePara.textContent = computerScore;
+
+    if (resultDiv.childElementCount === 2) {
+      resultDiv.lastElementChild.remove();
+    }
+  }
+
+  function endOfGame() {
+    const title = document.querySelector('#title-popup');
+
+    if (playerScore === 5) {
+      title.textContent = 'You have won this game!';
+      newGame();
+    } else if (computerScore === 5) {
+      title.textContent = 'You have lost this game!';
+      newGame();
+    }
+  }
 
   function getResultOfGame(event) {
     const playerSelection = event.target.getAttribute('data-id');
@@ -64,33 +116,29 @@ function game() {
     } else {
       paragraph.className = 'color-yellow';
     }
+
+    setRoundScore(roundResult);
+    endOfGame();
+  }
+
+  function newGame() {
+    const popup = document.querySelector('[data-id="popup"]');
+    const bgPopup = document.querySelector('[data-id="bg-popup"]');
+    const body = document.body;
+
+    popup.classList.toggle('active');
+    bgPopup.classList.toggle('active');
+    body.classList.toggle('lock');
   }
 
   rockBtn.addEventListener('click', (event) => getResultOfGame(event));
   paperBtn.addEventListener('click', (event) => getResultOfGame(event));
   scissorsBtn.addEventListener('click', (event) => getResultOfGame(event));
-
-  /*
-  for (let i = 1; i <= 5; i++) {
-    const playerSelection = isDataValid();
-    const computerSelection = getComputerChoice();
-    try {
-      const result = playRound(playerSelection, computerSelection).toLowerCase();
-
-      if (result.includes('you win')) {
-        playerScore++;
-      } else {
-        computerScore++;
-      }
-    } catch {
-      console.log('Oops, error!');
-    }
-  }
-
-  return playerScore > computerScore
-    ? console.log('You Win!')
-    : console.log('You Lose!');
-    */
+  resetBtn.addEventListener('click', resetGame);
+  okButton.addEventListener('click', () => {
+    newGame();
+    resetGame();
+  });
 }
 
 game();
