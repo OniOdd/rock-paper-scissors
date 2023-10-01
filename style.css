@@ -2,9 +2,15 @@ html { box-sizing: border-box; }
 
 *,
 *::before,
-*::after {
-  box-sizing: inherit;
-  /* margin: 0;
-  padding: 0;
-  border: 0; */
+*::after { box-sizing: inherit; }
+
+p {
+  display: inline-block;
+  margin-top: 0;
 }
+
+.color-green { color: #008000; }
+
+.color-red { color: #ff0000; }
+
+.color-yellow { color: #918007; }

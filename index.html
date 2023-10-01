@@ -9,7 +9,28 @@
 </head>
 
 <body>
-
+  <main>
+    <h1>Rock Paper Scissors - The Game</h1>
+    <section aria-labelledby="title-choose">
+      <h2 id="title-choose">Choose: rock, paper or scissors?</h2>
+      <button data-id="rock" aria-label="Rock button" type="button">Rock</button>
+      <button data-id="paper" aria-label="Paper button" type="button">Paper</button>
+      <button data-id="scissors" aria-label="Scissors button" type="button">Scissors</button>
+    </section>
+    <section aria-labelledby="title-output">
+      <h2 id="title-output">Output</h2>
+        <div>
+          <p data-id="player">Player score: </p>
+        </div>
+        <div>
+          <p data-id="computer">Computer score: </p>
+        </div>
+        <div data-id="result">
+          <p>Result: </p>
+        </div>
+        <button type="button">Reset</button>
+    </section>
+  </main>
 <script src="./script.js"></script>
 </body>
 

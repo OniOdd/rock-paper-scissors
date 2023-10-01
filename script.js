@@ -36,33 +36,41 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
-function isDataValid() {
-  try {
-    let playerSelection =
-      prompt('Choose: rock, paper or scissors?').toLowerCase().trim();
-
-    for (let i = 0; i < 100; i ++) {
-      if (
-        playerSelection === 'rock' ||
-        playerSelection === 'paper' ||
-        playerSelection === 'scissors'
-      ) {
-        return playerSelection;
-        break;
-      } else {
-        playerSelection =
-          prompt('Wrong! Choose again: rock, paper or scissors?');
-      }
-    }
-  } catch {
-    console.log('Oops, error!');
-  }
-}
-
 function game() {
-  let playerScore = 0;
-  let computerScore = 0;
+  const rockBtn = document.querySelector('[data-id="rock"]');
+  const paperBtn = document.querySelector('[data-id="paper"]');
+  const scissorsBtn = document.querySelector('[data-id="scissors"]');
+  const resultDiv = document.querySelector('[data-id="result"]');
 
+  function getResultOfGame(event) {
+    const playerSelection = event.target.getAttribute('data-id');
+    const computerSelection = getComputerChoice();
+    const roundResult = playRound(playerSelection, computerSelection);
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = roundResult;
+
+    if (resultDiv.childElementCount === 1) {
+      resultDiv.append(paragraph);
+    } else {
+      resultDiv.lastElementChild.remove();
+      resultDiv.append(paragraph);
+    }
+
+    if (paragraph.textContent.toLowerCase().includes('win')) {
+      paragraph.className = 'color-green';
+    } else if (paragraph.textContent.toLowerCase().includes('lose')) {
+      paragraph.className = 'color-red';
+    } else {
+      paragraph.className = 'color-yellow';
+    }
+  }
+
+  rockBtn.addEventListener('click', (event) => getResultOfGame(event));
+  paperBtn.addEventListener('click', (event) => getResultOfGame(event));
+  scissorsBtn.addEventListener('click', (event) => getResultOfGame(event));
+
+  /*
   for (let i = 1; i <= 5; i++) {
     const playerSelection = isDataValid();
     const computerSelection = getComputerChoice();
@@ -82,6 +90,7 @@ function game() {
   return playerScore > computerScore
     ? console.log('You Win!')
     : console.log('You Lose!');
+    */
 }
 
 game();
