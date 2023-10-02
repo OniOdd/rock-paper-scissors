@@ -37,9 +37,7 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function game() {
-  const rockBtn = document.querySelector('[data-id="rock"]');
-  const paperBtn = document.querySelector('[data-id="paper"]');
-  const scissorsBtn = document.querySelector('[data-id="scissors"]');
+  const sectionChoose = document.querySelector('#section-choose');
   const resetBtn = document.querySelector('[data-id="reset"]');
   const playerScoreDiv = document.querySelector('[data-id="player"]');
   const computerScoreDiv = document.querySelector('[data-id="computer"]');
@@ -94,8 +92,8 @@ function game() {
     }
   }
 
-  function getResultOfGame(event) {
-    const playerSelection = event.target.getAttribute('data-id');
+  function getResultOfGame(idName) {
+    const playerSelection = idName;
     const computerSelection = getComputerChoice();
     const roundResult = playRound(playerSelection, computerSelection);
 
@@ -131,9 +129,13 @@ function game() {
     body.classList.toggle('lock');
   }
 
-  rockBtn.addEventListener('click', (event) => getResultOfGame(event));
-  paperBtn.addEventListener('click', (event) => getResultOfGame(event));
-  scissorsBtn.addEventListener('click', (event) => getResultOfGame(event));
+  sectionChoose.addEventListener('click', (event) => {
+    const target = event.target.id;
+
+    if (target === 'rock') getResultOfGame(target);
+    if (target === 'paper') getResultOfGame(target);
+    if (target === 'scissors') getResultOfGame(target);
+  });
   resetBtn.addEventListener('click', resetGame);
   okButton.addEventListener('click', () => {
     newGame();

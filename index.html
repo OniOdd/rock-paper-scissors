@@ -11,11 +11,11 @@
 <body>
   <main>
     <h1>Rock Paper Scissors - The Game</h1>
-    <section aria-labelledby="title-choose">
+    <section id="section-choose" aria-labelledby="title-choose">
       <h2 id="title-choose">Choose: rock, paper or scissors?</h2>
-      <button data-id="rock" aria-label="Rock button" type="button">Rock</button>
-      <button data-id="paper" aria-label="Paper button" type="button">Paper</button>
-      <button data-id="scissors" aria-label="Scissors button" type="button">Scissors</button>
+      <button id="rock" aria-label="Rock button" type="button">Rock</button>
+      <button id="paper" aria-label="Paper button" type="button">Paper</button>
+      <button id="scissors" aria-label="Scissors button" type="button">Scissors</button>
     </section>
     <section aria-labelledby="title-output">
       <h2 id="title-output">Output</h2>
@@ -33,7 +33,7 @@
   </main>
   <section data-id="popup" aria-labelledby="title-popup">
     <h2 id="title-popup">The result of the game</h2>
-    <button data-id="ok" type="button">OK</button>
+    <button data-id="ok" aria-label="OK button" type="button">OK</button>
   </section>
   <div data-id="bg-popup"></div>
 <script src="./script.js"></script>
